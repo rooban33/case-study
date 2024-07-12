@@ -1,0 +1,21 @@
+<br><br>
+<div class="search" >
+    <form (ngSubmit)="check(f)"  #f="ngForm">
+        <input type="text" name="id" ngModel>
+        &nbsp;
+        <button type="submit">Search</button>
+
+    </form>
+</div>
+
+<button (click)="onGet()" style="margin-left: 500px;"> Get Companies</button>
+<br><br>
+
+<ag-grid-angular
+  class="ag-theme-alpine-dark"
+  style="height: 400px;width: 600px;margin-left: 250px;"
+      [rowData]="rowData"
+      [columnDefs]="colDefs"
+  >
+  
+  </ag-grid-angular>

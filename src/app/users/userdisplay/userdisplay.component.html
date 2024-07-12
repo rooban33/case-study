@@ -1,0 +1,22 @@
+<div>
+
+    <app-user-edit *ngIf="editState" (setFalse)="onCancel()" [id]="info.Id" (task)="onEdit()"></app-user-edit>
+
+</div>
+<div id="login-container" *ngIf="!editState">
+    <div class="profile-img" style="background: url({{info.Avatar}});"></div>
+    <h1>
+        &nbsp;&nbsp;{{info.FirstName}} {{info.LastName}}n
+    </h1>
+    <div class="description">
+      ID:{{info.Id}}<br><br>
+      Insured Amount:Rs.{{info.InsuredAmount}}<br><br>
+      Company Name: A{{info.CompanyName}}<br><br>
+      Email: {{info.Email}}<br><br>
+      Location: {{info.Location}}<br>
+    </div>
+    <div class="button">
+    <button (click)="onEdit()">Edit</button>
+    <button>Delete</button>
+    </div>
+  </div>
