@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { forkJoin, Observable, of, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 
 type info={
     Id: string,
@@ -13,11 +13,9 @@ type info={
 @Injectable()
 export class CompanyFetchService {
 
-    key: string = 'UITQOD983GZOA3KG';
 
-    key2:string ='LGQJ2M335WOIRHZI'
+    private apiUrl = 'https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users';
 
-    ans?:info;
 
 
     
@@ -78,6 +76,23 @@ export class CompanyFetchService {
             })),
             catchError(this.handleError)
           );
+      }
+
+      updateUser(id: string, userData: any): Observable<any> {
+        const url = `${this.apiUrl}/${id}`;
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      
+        console.log('Updating user with data:', userData);
+      
+        return this.http.put<any>(url, userData, { headers }).pipe(
+            catchError(error => {
+              console.error('Error updating user:', error);
+              return throwError(error);
+            }),
+            tap(response => {
+              console.log('Update user response:', response);
+            })
+        );
       }
 
     

@@ -1,4 +1,10 @@
-<div id="login-container">
+<div>
+
+  <app-cp-edit *ngIf="editState" (setFalse)="onCancel()" [id]="info.Id" [name]="info.Name" [location]="info.Location" [started]="info.Started" (task)="onEdit()"></app-cp-edit>
+
+</div>
+
+<div id="login-container" *ngIf="!editState">
     
     <h1>
         &nbsp;&nbsp;{{info.Name}}

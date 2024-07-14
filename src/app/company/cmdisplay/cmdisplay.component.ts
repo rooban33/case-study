@@ -8,8 +8,9 @@ import { CompanyFetchService } from 'src/app/shared/company-fetch-service';
   styleUrls: ['./cmdisplay.component.css']
 })
 export class CmdisplayComponent {
-  cpId!: string; // Assuming userId will be assigned before ngOnInit completes
-  info: any; // Assuming info will hold the fetched user data
+  cpId!: string; 
+  info: any; 
+  editState=false;
 
   constructor(private route: ActivatedRoute, private cmf: CompanyFetchService) {}
 
@@ -29,4 +30,15 @@ export class CmdisplayComponent {
     );
     console.log(this.info);
   }
+
+  onCancel()
+  {
+    this.editState=false;
+  }
+
+  onEdit()
+  {
+    this.editState=true;
+  }
+  
 }
