@@ -14,6 +14,7 @@ import { UserdisplayComponent } from './users/userdisplay/userdisplay.component'
 import { RouterModule } from '@angular/router';
 import { CmdisplayComponent } from './company/cmdisplay/cmdisplay.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
     CompanyComponent,
     UserdisplayComponent,
     CmdisplayComponent,
-    UserEditComponent
+    UserEditComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

@@ -17,9 +17,13 @@ export class UserEditComponent {
 
   @Output() setFalse=new EventEmitter<void>()
 
-  constructor( private usf: UserFetchService) {}
+  constructor( private usf: UserFetchService) {
+  }
 
   @Input() id!:string;
+  @Input() first!:string;
+  @Input() avatar!:string;
+  @Input() last!:string;
 
   onCancel()
   {

@@ -4,17 +4,17 @@
   <form (ngSubmit)="onSubmit(form)" #form="ngForm">
     <p>
       <label for="title">First Name</label>
-      <input type="text" id="firstname" name="firstname" ngModel />
+      <input type="text" id="firstname" name="firstname" [(ngModel)]="first" />
     </p>
 
     <p>
       <label for="avatar">Avatar</label>
-      <input type="text" id="avatar" name="avatar"  ngModel/>
+      <input type="text" id="avatar" name="avatar" value="hello" [(ngModel)]="avatar"/>
     </p>
 
     <p>
         <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" name="lastname" ngModel />
+        <input type="text" id="lastname" name="lastname" [(ngModel)]="last" />
       </p>
     
 

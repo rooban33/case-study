@@ -1,6 +1,6 @@
 <div>
 
-    <app-user-edit *ngIf="editState" (setFalse)="onCancel()" [id]="info.Id" (task)="onEdit()"></app-user-edit>
+    <app-user-edit *ngIf="editState" (setFalse)="onCancel()" [id]="info.Id" [first]="info.FirstName" [last]="info.LastName" [avatar]="info.Avatar" (task)="onEdit()"></app-user-edit>
 
 </div>
 <div id="login-container" *ngIf="!editState">
