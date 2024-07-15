@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserFetchService } from 'src/app/shared/user-fetch-service';
+import { UserFetchService } from 'src/app/shared/user-fetch.service';
 
 @Component({
   selector: 'app-add-user',

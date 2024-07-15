@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
-import { UserFetchService } from '../shared/user-fetch-service';
+import { UserFetchService } from '../shared/user-fetch.service';
 import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 

@@ -1,6 +1,6 @@
 import { Component, Output ,EventEmitter, Input} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserFetchService } from 'src/app/shared/user-fetch-service';
+import { UserFetchService } from 'src/app/shared/user-fetch.service';
 
 type info={
   firstname:string,

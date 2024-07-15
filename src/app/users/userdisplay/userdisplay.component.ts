@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
-import { UserFetchService } from 'src/app/shared/user-fetch-service';
+import { UserFetchService } from 'src/app/shared/user-fetch.service';
 
 @Component({
   selector: 'app-user-details',

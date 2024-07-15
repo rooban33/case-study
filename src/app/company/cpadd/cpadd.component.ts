@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CompanyFetchService } from 'src/app/shared/company-fetch-service';
+import { CompanyFetchService } from 'src/app/shared/company-fetch.service';
 
 @Component({
   selector: 'app-cpadd',

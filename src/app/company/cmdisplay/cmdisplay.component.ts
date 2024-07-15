@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute ,Router} from '@angular/router';
-import { CompanyFetchService } from 'src/app/shared/company-fetch-service';
+import { CompanyFetchService } from 'src/app/shared/company-fetch.service';
 
 @Component({
   selector: 'app-cmdisplay',
