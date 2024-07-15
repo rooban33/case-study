@@ -36,6 +36,8 @@ export class UsersComponent {
 
   rowData: info[] = [];
 
+  addState=false;
+
   onGet() {
     this.usersFetchService.getData().subscribe(
       (data: any[]) => {
@@ -51,7 +53,14 @@ export class UsersComponent {
 
   check(form: NgForm) {
     console.log(form.value.id);
-    const s=this.usersFetchService.checkUser(form.value.id)
+    const s=this.usersFetchService.checkUser(form.value.id).subscribe(
+      (response) => {
+        console.log('User Available');
+      },
+      (error) => {
+        console.error('Error');
+      }
+    );
 
     
         if (s) {
@@ -60,6 +69,16 @@ export class UsersComponent {
         } else {
           window.alert("User ID not found");
         }
+      }
+
+      onCancel()
+      {
+        this.addState=false;
+      }
+    
+      onEdit()
+      {
+        this.addState=true;
       }
 
 

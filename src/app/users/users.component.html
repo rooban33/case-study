@@ -6,12 +6,18 @@
 
     </form>
 </div>
+<div>
+
+    <app-add-user *ngIf="addState" (setFalse)="onCancel()" (task)="onEdit()"></app-add-user>
+
+</div>
 <button (click)="onGet()" style="margin-left: 500px;"> Get users</button>
-<button style="margin-left: 500px;"> Add user</button>
+<button style="margin-left: 500px;" (click)="onEdit()"> Add user</button>
 <br>
 <br>
 
 <ag-grid-angular
+  *ngIf="!addState"
   class="ag-theme-alpine-dark"
   style="height: 400px"
       [rowData]="rowData"

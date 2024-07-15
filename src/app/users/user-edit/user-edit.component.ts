@@ -30,20 +30,27 @@ export class UserEditComponent {
     this.setFalse.emit();
   }
 
-  onSubmit(form : NgForm)
-  {
-
-     const send : info ={
-      firstname:form.value.firstname,
-      avatar:form.value.avatar,
-      lastname:form.value.lastname
-      };
-
-      console.log(this.id);
-      const res=this.usf.updateUser(this.id,send);
-      window.alert(res);
-      this.onCancel();
-
+  onSubmit(form: NgForm) {
+    const send: info = {
+      firstname: form.value.firstname,
+      avatar: form.value.avatar,
+      lastname: form.value.lastname
+    };
+  
+    console.log(this.id);
+    this.usf.updateUser(this.id, send).subscribe(
+      (response) => {
+        console.log('Update successful:', response);
+        window.alert('User updated successfully'); // Display success message
+        this.onCancel(); // Close the dialog or handle success flow
+      },
+      (error) => {
+        console.error('Error updating user:', error);
+        window.alert('Failed to update user'); // Display error message
+        // Optionally handle error flow
+      }
+    );
   }
+  
 
 }

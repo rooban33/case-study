@@ -2,11 +2,6 @@ import { Component, Output ,EventEmitter, Input} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CompanyFetchService } from 'src/app/shared/company-fetch-service';
 
-type info={
-  name:string,
-  location:string,
-  started:string
-}
 
 @Component({
   selector: 'app-cp-edit',
@@ -33,15 +28,26 @@ export class CpEditComponent {
   onSubmit(form : NgForm)
   {
 
-     const send : info ={
-      name:form.value.name,
-      location:form.value.location,
-      started:form.value.started
+     const send ={
+      companyName:form.value.name,
+      companyLocation:form.value.location,
+      startedOn:form.value.started
       };
 
       console.log(this.id);
-      const res=this.cf.updateUser(this.id,send);
-      window.alert(res);
+      const res=this.cf.updateCpy(this.id,send).subscribe(
+        (response) => {
+          console.log('Update successful:', response);
+          window.alert('Company updated successfully'); // Display success message
+          this.onCancel(); // Close the dialog or handle success flow
+        },
+        (error) => {
+          console.error('Error updating Company:', error);
+          window.alert('Failed to update Company'); // Display error message
+          // Optionally handle error flow
+        }
+      );;
+      
       this.onCancel();
 
   }

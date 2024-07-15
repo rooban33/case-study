@@ -14,7 +14,7 @@ type info={
 export class CompanyFetchService {
 
 
-    private apiUrl = 'https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users';
+    private apiUrl = 'https://63ad81dada81ba97619ef936.mockapi.io/api/v1/company';
 
 
 
@@ -53,7 +53,7 @@ export class CompanyFetchService {
     }
 
     checkcp(id: string): boolean {
-        const data = this.http.get<string>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users/' + id).pipe(
+        const data = this.http.get<string>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/company/' + id).pipe(
             map((data: any) => ({
               Id: data.id,
               Name: data.companyName,
@@ -78,22 +78,33 @@ export class CompanyFetchService {
           );
       }
 
-      updateUser(id: string, userData: any): Observable<any> {
+      updateCpy(id: string, userData: any): Observable<any> {
         const url = `${this.apiUrl}/${id}`;
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       
-        console.log('Updating user with data:', userData);
+        console.log('Updating Company with data:', userData);
       
         return this.http.put<any>(url, userData, { headers }).pipe(
             catchError(error => {
-              console.error('Error updating user:', error);
+              console.error('Error updating Company:', error);
               return throwError(error);
             }),
             tap(response => {
-              console.log('Update user response:', response);
+              console.log('Update Company response:', response);
             })
         );
       }
 
+
+      addCpy(data:any): Observable<any>
+      {
+        console.log("hERE:",data);
+        return this.http.post<any>(this.apiUrl, data);
+      }
+
+
+      deleteCpy(id: string): Observable<any> {
+        return this.http.delete<any>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users/' + id);
+      }
     
 }

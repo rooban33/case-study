@@ -16,6 +16,7 @@ import { CmdisplayComponent } from './company/cmdisplay/cmdisplay.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
 import { CpEditComponent } from './company/cp-edit/cp-edit.component';
+import { CpaddComponent } from './company/cpadd/cpadd.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CpEditComponent } from './company/cp-edit/cp-edit.component';
     CmdisplayComponent,
     UserEditComponent,
     AddUserComponent,
-    CpEditComponent
+    CpEditComponent,
+    CpaddComponent
   ],
   imports: [
     BrowserModule,

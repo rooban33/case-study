@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { UserFetchService } from 'src/app/shared/user-fetch-service';
 
 @Component({
@@ -13,7 +13,7 @@ export class UserdisplayComponent implements OnInit {
   info: any; // Assuming info will hold the fetched user data
   editState=false;
 
-  constructor(private route: ActivatedRoute, private usf: UserFetchService) {}
+  constructor(private route: ActivatedRoute, private usf: UserFetchService, private router: Router) {}
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id')!;
@@ -39,5 +39,24 @@ export class UserdisplayComponent implements OnInit {
   onEdit()
   {
     this.editState=true;
+  }
+
+  onDelete()
+  {
+    this.usf.deleteUser(this.userId).subscribe(
+      (response) => {
+        console.log('Update successful:', response);
+        window.alert('User updated successfully'); // Display success message
+        this.onCancel(); // Close the dialog or handle success flow
+        this.router.navigate(['/users'])
+      },
+      (error) => {
+        console.error('Error updating user:', error);
+        window.alert('Failed to update user'); // Display error message
+        // Optionally handle error flow
+      }
+    );
+
+
   }
 }

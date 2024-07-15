@@ -8,10 +8,18 @@
     </form>
 </div>
 
+<div>
+
+    <app-cpadd *ngIf="addState" (setFalse)="onCancel()" (task)="onEdit()"></app-cpadd>
+
+</div>
+
 <button (click)="onGet()" style="margin-left: 500px;"> Get Companies</button>
+<button style="margin-left: 500px;" (click)="onEdit()"> Add Company</button>
 <br><br>
 
 <ag-grid-angular
+*ngIf="!addState"
   class="ag-theme-alpine-dark"
   style="height: 400px;width: 600px;margin-left: 250px;"
       [rowData]="rowData"

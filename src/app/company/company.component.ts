@@ -29,6 +29,7 @@ export class CompanyComponent {
 
 
   rowData: info[] = [];
+  addState=false;
 
   onGet() {
     this.cmpnyFetchService.getData().subscribe(
@@ -55,5 +56,16 @@ export class CompanyComponent {
           window.alert("User ID not found");
         }
       }
+
+      onCancel()
+      {
+        this.addState=false;
+      }
+    
+      onEdit()
+      {
+        this.addState=true;
+      }
+
 
 }

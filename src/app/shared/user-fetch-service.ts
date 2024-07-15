@@ -21,7 +21,7 @@ export class UserFetchService {
 
     constructor(private http: HttpClient) { }
 
-    private apiUrl = 'https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users';
+    private apiUrl='https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users';
 
 
          assignData(data: info[]): any[] {
@@ -57,25 +57,24 @@ export class UserFetchService {
         return throwError('Error fetching data from API. Please try again later.');
     }
 
-    checkUser(id: string): boolean {
-        const data = this.http.get<string>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users/' + id).pipe(
-            map((data: any) => ({
-              Id: data.id,
-              FirstName: data.firstName,
-              LastName: data.lastName,
-              InsuredAmount: data.insuredAmount,
-              CompanyName: data.companyName,
-              Email: data.email,
-              Location: data.userLocation,
-              Avatar: data.avatar
-            })),
-            catchError(this.handleError));
-            console.log(data);
-          return true;
-      }
+    checkUser(id: string): Observable<boolean> {
+      const url = `${this.apiUrl}/${id}`;
+      return this.http.get<any>(url).pipe(
+        map((data: any) => {
+          // Assuming 'data' contains the user object if found, or undefined/null if not found
+          return !!data; // Convert data to boolean (true if data exists, false if null/undefined)
+        }),
+        catchError(error => {
+          // Handle HTTP errors
+          console.error('Error fetching user:', error);
+          return of(false); // Return Observable of false in case of error
+        })
+      );
+    }
 
     displayUser(id: string): Observable<any> {
-        return this.http.get('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users/' + id)
+      const url = `${this.apiUrl}/${id}`;
+        return this.http.get(url)
           .pipe(
             map((data: any) => ({
               Id: data.id,
@@ -95,18 +94,39 @@ export class UserFetchService {
         const url = `${this.apiUrl}/${id}`;
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       
-        console.log('Updating user with data:', userData);
+        const body = {
+          firstName: userData.firstname,
+          avatar: userData.avatar,
+          lastName: userData.lastname
+        };
       
-        return this.http.put<any>(url, userData, { headers }).pipe(
-            catchError(error => {
-              console.error('Error updating user:', error);
-              return throwError(error);
-            }),
-            tap(response => {
-              console.log('Update user response:', response);
-            })
+        console.log('Updating user with data:', body);
+      
+        return this.http.put<any>(url, body, { headers }).pipe(
+          catchError(error => {
+            console.error('Error updating user:', error);
+            return throwError(error);
+          }),
+          tap(response => {
+            console.log('Update user response:', response);
+          })
         );
       }
+      
+      addUser(data:any): Observable<any>
+      {
+        console.log("hERE:",data);
+        return this.http.post<any>(this.apiUrl, data);
+      }
+
+
+      deleteUser(id: string): Observable<any> {
+        return this.http.delete<any>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users/' + id);
+      }
+      
+
+
+
       
 
     

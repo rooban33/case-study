@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,Router} from '@angular/router';
 import { CompanyFetchService } from 'src/app/shared/company-fetch-service';
 
 @Component({
@@ -12,7 +12,7 @@ export class CmdisplayComponent {
   info: any; 
   editState=false;
 
-  constructor(private route: ActivatedRoute, private cmf: CompanyFetchService) {}
+  constructor(private route: ActivatedRoute, private cmf: CompanyFetchService,private router :Router) {}
 
   ngOnInit() {
     this.cpId = this.route.snapshot.paramMap.get('id')!;
@@ -39,6 +39,25 @@ export class CmdisplayComponent {
   onEdit()
   {
     this.editState=true;
+  }
+
+  onDelete()
+  {
+    this.cmf.deleteCpy(this.cpId).subscribe(
+      (response) => {
+        console.log('Delete successful:', response);
+        window.alert('Company Deleted successfully'); // Display success message
+        this.onCancel(); // Close the dialog or handle success flow
+        this.router.navigate(['/company'])
+      },
+      (error) => {
+        console.error('Error deleteing Company:', error);
+        window.alert('Failed to delete Company'); // Display error message
+        // Optionally handle error flow
+      }
+    );
+
+
   }
   
 }
