@@ -25,18 +25,7 @@ body {
   color: #b3a8a8;
 }
 
-/* Login container */
-#login-container {
-  height: 400px;
-  width: 350px;
-  padding: 20px;
-  border-radius: 5px;
-  background: var(--background);
-  position: relative;
-  box-shadow: 5px 5px 10px rgba(75, 73, 73, 0.5);
-  margin-left: 400px;
-  margin-top:55px;
-}
+
 
 /* Profile image */
 #login-container .profile-img {

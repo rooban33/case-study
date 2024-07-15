@@ -3,6 +3,7 @@
   <app-cp-edit *ngIf="editState" (setFalse)="onCancel()" [id]="info.Id" [name]="info.Name" [location]="info.Location" [started]="info.Started" (task)="onEdit()"></app-cp-edit>
 
 </div>
+<div class="trail">
 
 <div id="login-container" *ngIf="!editState">
     
@@ -19,3 +20,5 @@
     <button (click)="onDelete()">Delete</button>
     </div>
   </div>
+
+</div>

@@ -46,15 +46,17 @@ export class CompanyComponent {
 
   check(form: NgForm) {
     console.log(form.value.id);
-    const s=this.cmpnyFetchService.checkcp(form.value.id)
-
-    
-        if (s) {
-          
+    this.cmpnyFetchService.checkcp(form.value.id).subscribe(
+      (response) => {
+        if (response) {
           this.router.navigate(['/company',form.value.id]); 
         } else {
-          window.alert("User ID not found");
+          window.alert("Company ID not found");
         }
+      }
+    );
+
+    
       }
 
       onCancel()

@@ -3,6 +3,7 @@
     <app-user-edit *ngIf="editState" (setFalse)="onCancel()" [id]="info.Id" [first]="info.FirstName" [last]="info.LastName" [avatar]="info.Avatar" (task)="onEdit()"></app-user-edit>
 
 </div>
+<div class="trail">
 <div id="login-container" *ngIf="!editState">
     <div class="profile-img" style="background: url({{info.Avatar}});"></div>
     <h1>
@@ -20,3 +21,4 @@
     <button (click)="onDelete()">Delete</button>
     </div>
   </div>
+</div>

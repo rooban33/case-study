@@ -57,16 +57,18 @@ export class UserFetchService {
         return throwError('Error fetching data from API. Please try again later.');
     }
 
-    checkUser(id: string): Observable<boolean> {
+    checkUser(id: string):Observable<boolean> {
       const url = `${this.apiUrl}/${id}`;
       return this.http.get<any>(url).pipe(
-        map((data: any) => {
-          // Assuming 'data' contains the user object if found, or undefined/null if not found
-          return !!data; // Convert data to boolean (true if data exists, false if null/undefined)
+        map((response: any) => {
+          if (response && response !== "NOT FOUND") {
+            return true; // Resource found
+          } else {
+            return false; // Resource not found
+          }
         }),
         catchError(error => {
-          // Handle HTTP errors
-          console.error('Error fetching user:', error);
+          console.error('Error fetching resource:', error);
           return of(false); // Return Observable of false in case of error
         })
       );
@@ -123,11 +125,6 @@ export class UserFetchService {
       deleteUser(id: string): Observable<any> {
         return this.http.delete<any>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/users/' + id);
       }
-      
-
-
-
-      
 
     
 }

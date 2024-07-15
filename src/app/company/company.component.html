@@ -1,7 +1,7 @@
 <br><br>
 <div class="search" >
     <form (ngSubmit)="check(f)"  #f="ngForm">
-        <input type="text" name="id" ngModel>
+        <input type="text" name="id" placeholder="Enter Company ID" ngModel>
         &nbsp;
         <button type="submit">Search</button>
 
@@ -13,17 +13,21 @@
     <app-cpadd *ngIf="addState" (setFalse)="onCancel()" (task)="onEdit()"></app-cpadd>
 
 </div>
+<br>
 
-<button (click)="onGet()" style="margin-left: 500px;"> Get Companies</button>
-<button style="margin-left: 500px;" (click)="onEdit()"> Add Company</button>
+<div class="button-container" *ngIf="!addState">
+    <button (click)="onGet()" class="button-17">Get Companies</button>
+    <button (click)="onEdit()" class="button-17">Add Company</button>
+  </div>
+  
 <br><br>
 
-<ag-grid-angular
-*ngIf="!addState"
-  class="ag-theme-alpine-dark"
-  style="height: 400px;width: 600px;margin-left: 250px;"
-      [rowData]="rowData"
-      [columnDefs]="colDefs"
-  >
-  
-  </ag-grid-angular>
+    <div class="table">
+      <!-- Display ag-grid-angular when addState is false -->
+      <ag-grid-angular *ngIf="!addState"
+        class="ag-theme-alpine-dark"
+        style="height: 400px; width: 600px;"
+        [rowData]="rowData"
+        [columnDefs]="colDefs">
+      </ag-grid-angular>
+    </div>

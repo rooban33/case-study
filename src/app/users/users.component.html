@@ -1,6 +1,7 @@
+<br>
 <div class="search" >
     <form (ngSubmit)="check(f)"  #f="ngForm">
-        <input type="text" name="id" ngModel>
+        <input type="text" name="id" placeholder="Enter User ID" ngModel>
         &nbsp;
         <button type="submit">Search</button>
 
@@ -11,15 +12,18 @@
     <app-add-user *ngIf="addState" (setFalse)="onCancel()" (task)="onEdit()"></app-add-user>
 
 </div>
-<button (click)="onGet()" style="margin-left: 500px;"> Get users</button>
-<button style="margin-left: 500px;" (click)="onEdit()"> Add user</button>
+<br>
+<div class="button-container" *ngIf="!addState">
+<button (click)="onGet()" class="button-17" > Get users</button>
+<button class="button-17" (click)="onEdit()"> Add user</button>
+</div>
 <br>
 <br>
 
 <ag-grid-angular
   *ngIf="!addState"
   class="ag-theme-alpine-dark"
-  style="height: 400px"
+  style="height: 400px;"
       [rowData]="rowData"
       [columnDefs]="colDefs"
   >

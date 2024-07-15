@@ -52,18 +52,22 @@ export class CompanyFetchService {
         return throwError('Error fetching data from API. Please try again later.');
     }
 
-    checkcp(id: string): boolean {
-        const data = this.http.get<string>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/company/' + id).pipe(
-            map((data: any) => ({
-              Id: data.id,
-              Name: data.companyName,
-              Location: data.companyLocation,
-              Started: data.startedOn
-            })),
-            catchError(this.handleError));
-            console.log(data);
-          return true;
-      }
+    checkcp(id: string):Observable<boolean> {
+      const url = `${this.apiUrl}/${id}`;
+      return this.http.get<any>(url).pipe(
+        map((response: any) => {
+          if (response && response !== "NOT FOUND") {
+            return true; // Resource found
+          } else {
+            return false; // Resource not found
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching resource:', error);
+          return of(false); // Return Observable of false in case of error
+        })
+      );
+    }
 
       displayCompany(id: string): Observable<info> {
         return this.http.get<any>('https://63ad81dada81ba97619ef936.mockapi.io/api/v1/company/'+id)

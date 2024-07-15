@@ -55,20 +55,15 @@ export class UsersComponent {
     console.log(form.value.id);
     const s=this.usersFetchService.checkUser(form.value.id).subscribe(
       (response) => {
-        console.log('User Available');
-      },
-      (error) => {
-        console.error('Error');
-      }
-    );
-
-    
-        if (s) {
-          
+        if (response) {
           this.router.navigate(['/user',form.value.id]); 
         } else {
           window.alert("User ID not found");
         }
+      }
+    );
+
+    
       }
 
       onCancel()
