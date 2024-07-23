@@ -10,6 +10,10 @@
   },
   "private": true,
   "dependencies": {
+    "@ag-grid-community/angular": "^32.0.2",
+    "@ag-grid-community/core": "^32.0.2",
+    "@ag-grid-community/csv-export": "^32.0.2",
+    "@ag-grid-enterprise/excel-export": "^32.0.2",
     "@angular/animations": "^16.2.0",
     "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.2.0",

@@ -19,13 +19,17 @@
 </div>
 <br>
 <br>
-
+<button (click)="onBtExport()">Download CSV export file</button>
 <ag-grid-angular
   *ngIf="!addState"
   class="ag-theme-alpine-dark"
   style="height: 400px;"
       [rowData]="rowData"
       [columnDefs]="colDefs"
+      [getRowStyle]="getRowStyle"
+      (gridReady)="onGridReady($event)"
+      
+      gridId="1"
   >
   
   </ag-grid-angular>

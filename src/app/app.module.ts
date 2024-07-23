@@ -10,6 +10,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { CompanyComponent } from './company/company.component';
 import { CompanyFetchService } from './shared/company-fetch.service';
 import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { UserdisplayComponent } from './users/userdisplay/userdisplay.component';
 import { RouterModule } from '@angular/router';
 import { CmdisplayComponent } from './company/cmdisplay/cmdisplay.component';
@@ -18,11 +19,18 @@ import { AddUserComponent } from './users/add-user/add-user.component';
 import { CpEditComponent } from './company/cp-edit/cp-edit.component';
 import { CpaddComponent } from './company/cpadd/cpadd.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { CsvExportModule } from "@ag-grid-community/csv-export";
+
+
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { LoaderService } from './shared/loader.service';
+import { ModuleRegistry } from '@ag-grid-community/core';
+import { ExcelExportModule } from '@ag-grid-enterprise/excel-export';
 
+ModuleRegistry.registerModules([ CsvExportModule,
+  ExcelExportModule ]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +42,7 @@ import { LoaderService } from './shared/loader.service';
     AddUserComponent,
     CpEditComponent,
     CpaddComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +52,7 @@ import { LoaderService } from './shared/loader.service';
     FormsModule,
     RouterModule,
     MatProgressSpinnerModule
+
   ],
   providers: [UserFetchService,CompanyFetchService,LoaderInterceptor,
     LoaderService,
